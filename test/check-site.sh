@@ -67,6 +67,11 @@ assert_contains _site/index.html 'script.js' "page links the script"
 assert_contains script.js 'IntersectionObserver' "script.js sets up an IntersectionObserver for scroll-spy"
 assert_contains styles.css '.is-active' "styles.css defines an active nav-link state"
 
+# --- Task 4: theme toggle wiring ---
+assert_contains _site/index.html 'id="theme-toggle"' "theme toggle button renders"
+assert_contains script.js 'matchMedia' "script.js checks the OS color-scheme preference"
+assert_contains styles.css 'data-theme="dark"' "styles.css defines dark-theme overrides"
+
 if [ "$FAILURES" -eq 0 ]; then
   echo "All checks passed."
   exit 0

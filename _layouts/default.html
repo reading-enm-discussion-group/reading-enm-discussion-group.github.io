@@ -4,10 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ site.title }}</title>
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.setAttribute('data-theme', stored);
+        }
+      } catch (e) {
+        // localStorage unavailable; fall back to the OS color-scheme preference.
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
 </head>
 <body>
   {% assign ordered_sections = site.sections | sort: "order" %}
+
+  <button type="button" id="theme-toggle" aria-label="Switch to dark theme">
+    <span aria-hidden="true">&#9788;</span>
+  </button>
 
   <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
     <span class="visually-hidden">Toggle navigation menu</span>

@@ -54,3 +54,34 @@
     observer.observe(section);
   });
 })();
+
+(function () {
+  var toggle = document.getElementById('theme-toggle');
+  if (!toggle) {
+    return;
+  }
+
+  function currentTheme() {
+    var attr = document.documentElement.getAttribute('data-theme');
+    if (attr) {
+      return attr;
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    toggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (e) {
+      // localStorage unavailable (e.g. private browsing); theme choice won't persist.
+    }
+  }
+
+  applyTheme(currentTheme());
+
+  toggle.addEventListener('click', function () {
+    applyTheme(currentTheme() === 'dark' ? 'light' : 'dark');
+  });
+})();
