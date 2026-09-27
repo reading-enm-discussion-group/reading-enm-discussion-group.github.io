@@ -26,18 +26,26 @@ assert_order() {
 
 assert_unique_section_ids() {
   local file="$1"
-  local ids duplicates
+  local ids duplicates empty_count
   ids=$(grep -oE '<section id="[^"]*"' "$file" | sed -E 's/<section id="([^"]*)"/\1/')
   duplicates=$(echo "$ids" | sort | uniq -d)
-  if [ -z "$duplicates" ]; then
-    pass "all section ids are unique and non-empty"
+  empty_count=$(echo "$ids" | grep -cx '' || true)
+  if [ -n "$duplicates" ]; then
+    fail "duplicate section id(s) found: $duplicates"
+  elif [ "$empty_count" -gt 0 ]; then
+    fail "$empty_count section(s) have an empty id"
   else
-    fail "duplicate or empty section id(s) found: $duplicates"
+    pass "all section ids are unique and non-empty"
   fi
 }
 
 echo "Building site..."
-bundle exec jekyll build --quiet
+rm -rf _site
+if ! bundle exec jekyll build --quiet; then
+  fail "jekyll build failed — see output above"
+  echo "$FAILURES check(s) failed."
+  exit 1
+fi
 
 # --- Task 1: sections render from _sections/*.md, in order, with unique ids ---
 assert_contains _site/index.html '<section id="welcome">' "welcome section renders with correct id"
@@ -71,6 +79,15 @@ assert_contains styles.css '.is-active' "styles.css defines an active nav-link s
 assert_contains _site/index.html 'id="theme-toggle"' "theme toggle button renders"
 assert_contains script.js 'matchMedia' "script.js checks the OS color-scheme preference"
 assert_contains styles.css 'data-theme="dark"' "styles.css defines dark-theme overrides"
+
+# --- Final review fixes ---
+assert_contains styles.css 'keep the menu on-screen after scrolling' "open mobile nav stays fixed in the viewport instead of scrolling off-screen"
+assert_contains styles.css 'keep the icon visible in dark mode' "hamburger toggle has an explicit color so it's visible in dark mode"
+assert_contains styles.css 'scroll-margin-top' "sections have scroll-margin-top so the fixed mobile header doesn't cover their heading after a jump"
+assert_contains _site/index.html '<h1>' "page has an h1"
+assert_contains script.js 'reflectTheme' "initial theme application doesn't persist an unchosen OS-default as an explicit override"
+assert_contains _layouts/default.html '| escape' "section titles are HTML-escaped before rendering"
+assert_contains _config.yml 'exclude:' "_config.yml excludes non-site files from the Jekyll build"
 
 if [ "$FAILURES" -eq 0 ]; then
   echo "All checks passed."

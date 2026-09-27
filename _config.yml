@@ -4,3 +4,18 @@ description: "A community space for reading and discussing ethical non-monogamy.
 collections:
   sections:
     output: false
+
+defaults:
+  - scope:
+      path: ""
+      type: "sections"
+    values:
+      order: 999
+
+exclude:
+  - docs
+  - test
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+

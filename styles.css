@@ -75,7 +75,7 @@ a {
   position: fixed;
   top: 1rem;
   right: 1rem;
-  z-index: 20;
+  z-index: 25;
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
@@ -135,15 +135,26 @@ main {
 }
 
 @media (max-width: 767.98px) {
+  body {
+    padding-top: 3.5rem;
+  }
+
+  main section {
+    scroll-margin-top: 4rem;
+  }
+
   .nav-toggle {
     display: block;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 10;
-    width: 100%;
-    padding: 0.75rem 1rem;
+    left: 0;
+    right: 0;
+    height: 3.5rem;
+    z-index: 20;
+    padding: 0 1rem;
     font-size: 1.25rem;
     background: var(--surface);
+    color: var(--text); /* keep the icon visible in dark mode */
     border: none;
     border-bottom: 1px solid var(--border);
     text-align: left;
@@ -155,5 +166,13 @@ main {
 
   #site-nav.is-open {
     display: block;
+    position: fixed; /* keep the menu on-screen after scrolling */
+    top: 3.5rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 15;
+    background: var(--bg);
   }
 }

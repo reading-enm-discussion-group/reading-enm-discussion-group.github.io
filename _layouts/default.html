@@ -33,18 +33,22 @@
   <nav id="site-nav" aria-label="Section navigation">
     <ul>
       {% for section in ordered_sections %}
-      <li><a href="#{{ section.nav_id }}">{{ section.title }}</a></li>
+      {% assign sid = section.nav_id | default: section.slug %}
+      <li><a href="#{{ sid }}">{{ section.title | default: section.slug | escape }}</a></li>
       {% endfor %}
     </ul>
   </nav>
 
   <main>
+    <h1>{{ site.title }}</h1>
     {% for section in ordered_sections %}
-    <section id="{{ section.nav_id }}">
-      <h2>{{ section.title }}</h2>
+    {% assign sid = section.nav_id | default: section.slug %}
+    <section id="{{ sid }}">
+      <h2>{{ section.title | default: section.slug | escape }}</h2>
       {{ section.content }}
     </section>
     {% endfor %}
+    <div id="scroll-end-sentinel" aria-hidden="true"></div>
   </main>
 
   <script src="{{ '/script.js' | relative_url }}"></script>
