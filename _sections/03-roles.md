@@ -1,5 +1,5 @@
 ---
-title: "Group Roles"
+title: "Structure & Roles"
 nav_id: roles
 order: 3
 ---
