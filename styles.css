@@ -102,6 +102,31 @@ th {
   cursor: pointer;
 }
 
+/* Icon shown reflects the theme currently in effect: sun for light,
+   moon for dark. Mirrors the light/dark variable rules above so it
+   stays in sync without needing JS to run first. */
+#theme-toggle .icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] #theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] #theme-toggle .icon-moon {
+  display: inline;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) #theme-toggle .icon-sun {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) #theme-toggle .icon-moon {
+    display: inline;
+  }
+}
+
 #site-nav {
   background: var(--surface);
   border-right: 1px solid var(--border);
