@@ -6,3 +6,4 @@ nav_id: contact
 - **Topic Tracking:** Google Sheets.
 - **Decisions:** via polling in Signal or using Google forms.
 
+If you get stuck (please try to [join](#join) Signal first!), you can email: `rdgpolydiscussion at gmail dot com`.
