@@ -1,7 +1,7 @@
 ---
 title: "Standards & Conduct"
 nav_id: standards-conduct
-order: 5
+order: 6
 ---
 - **Discussion Ethos:** Discussions explore perspectives, share lived experience, and test ideas rather than debate "correct" relationship styles. Members are encouraged to:
   - ask constructive questions

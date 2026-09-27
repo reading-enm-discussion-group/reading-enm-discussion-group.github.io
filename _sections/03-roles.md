@@ -1,7 +1,7 @@
 ---
 title: "Group Roles"
 nav_id: roles
-order: 2
+order: 3
 ---
 To distribute administrative workload, coordination tasks are split into two Coordinator roles held for 6-month terms. Nominations are called every 6 months. Group voting resolves contested roles.
 
