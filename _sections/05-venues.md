@@ -1,7 +1,6 @@
 ---
 title: "Venues"
 nav_id: venues
-order: 5
 ---
 Venues selected by the Venue Coordinator should aim to meet the following standards:
 

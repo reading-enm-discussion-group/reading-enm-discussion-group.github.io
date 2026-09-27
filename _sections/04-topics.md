@@ -1,7 +1,6 @@
 ---
 title: "Topics"
 nav_id: topics
-order: 4
 ---
 - **Topic submission:** Members can submit topics via an online form at any time. Topics are voted on shortly after each meeting using an online poll to decide the topic for the next meeting. As the Coordinators are also members, they can propose topics too.
 - **Topic Registry:** Managed via a shared Google Sheet.

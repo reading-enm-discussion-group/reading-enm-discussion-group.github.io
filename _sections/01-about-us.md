@@ -1,7 +1,6 @@
 ---
 title: "About Us"
 nav_id: about-us
-order: 1
 ---
 Welcome! This page contains information about an ENM discussion group based in Reading, UK.
 

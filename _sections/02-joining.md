@@ -1,7 +1,6 @@
 ---
 title: "Joining"
 nav_id: joining
-order: 2
 ---
 We have a short Google Form to fill out. It:
 
