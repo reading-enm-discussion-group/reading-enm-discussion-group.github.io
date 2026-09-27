@@ -31,6 +31,7 @@
   </button>
 
   <nav id="site-nav" aria-label="Section navigation">
+    <img id="site-nav-image" src="{{ '/images/778565537_1730666518153852_3336749789998214908_n.jpg' | relative_url }}" alt="{{ site.title }}">
     <ul>
       {% for section in ordered_sections %}
       {% assign sid = section.nav_id | default: section.slug %}
