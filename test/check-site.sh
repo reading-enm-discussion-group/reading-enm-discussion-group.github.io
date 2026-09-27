@@ -48,24 +48,26 @@ if ! bundle exec jekyll build --quiet; then
 fi
 
 # --- Task 1: sections render from _sections/*.md, in order, with unique ids ---
-assert_contains _site/index.html '<section id="welcome">' "welcome section renders with correct id"
-assert_contains _site/index.html '<h2>Welcome</h2>' "welcome section has correct heading"
 assert_contains _site/index.html '<section id="about-us">' "about-us section renders with correct id"
-assert_contains _site/index.html '<section id="meeting-schedule">' "meeting-schedule section renders with correct id"
-assert_contains _site/index.html '<section id="reading-list">' "reading-list section renders with correct id"
-assert_contains _site/index.html '<section id="discussion-guidelines">' "discussion-guidelines section renders with correct id"
+assert_contains _site/index.html '<h2>About Us</h2>' "about-us section has correct heading"
+assert_contains _site/index.html '<section id="joining">' "joining section renders with correct id"
+assert_contains _site/index.html '<section id="roles">' "roles section renders with correct id"
+assert_contains _site/index.html '<section id="topics">' "topics section renders with correct id"
+assert_contains _site/index.html '<section id="venues">' "venues section renders with correct id"
+assert_contains _site/index.html '<section id="standards-conduct">' "standards-conduct section renders with correct id"
 assert_contains _site/index.html '<section id="contact">' "contact section renders with correct id"
-assert_order _site/index.html 'id="welcome"' 'id="about-us"' "welcome renders before about-us"
-assert_order _site/index.html 'id="about-us"' 'id="meeting-schedule"' "about-us renders before meeting-schedule"
-assert_order _site/index.html 'id="meeting-schedule"' 'id="reading-list"' "meeting-schedule renders before reading-list"
-assert_order _site/index.html 'id="reading-list"' 'id="discussion-guidelines"' "reading-list renders before discussion-guidelines"
-assert_order _site/index.html 'id="discussion-guidelines"' 'id="contact"' "discussion-guidelines renders before contact"
+assert_order _site/index.html 'id="about-us"' 'id="joining"' "about-us renders before joining"
+assert_order _site/index.html 'id="joining"' 'id="roles"' "joining renders before roles"
+assert_order _site/index.html 'id="roles"' 'id="topics"' "roles renders before topics"
+assert_order _site/index.html 'id="topics"' 'id="venues"' "topics renders before venues"
+assert_order _site/index.html 'id="venues"' 'id="standards-conduct"' "venues renders before standards-conduct"
+assert_order _site/index.html 'id="standards-conduct"' 'id="contact"' "standards-conduct renders before contact"
 assert_unique_section_ids _site/index.html
 
 # --- Task 2: sidebar nav + mobile toggle markup ---
 assert_contains _site/index.html 'id="site-nav"' "nav has expected id"
 assert_contains _site/index.html 'aria-label="Section navigation"' "nav has accessible label"
-assert_contains _site/index.html 'href="#welcome"' "nav links to welcome section"
+assert_contains _site/index.html 'href="#about-us"' "nav links to about-us section"
 assert_contains _site/index.html 'href="#contact"' "nav links to contact section"
 assert_contains _site/index.html 'aria-controls="site-nav"' "mobile toggle references nav via aria-controls"
 assert_contains _site/index.html 'styles.css' "page links the stylesheet"
