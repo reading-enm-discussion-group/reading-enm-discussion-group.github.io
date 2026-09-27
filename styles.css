@@ -76,6 +76,11 @@ a {
   border-left: 3px solid transparent;
 }
 
+#site-nav a.is-active {
+  border-left-color: var(--accent);
+  font-weight: 600;
+}
+
 main {
   padding: 2rem 1.5rem;
   max-width: 42rem;

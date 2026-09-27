@@ -63,6 +63,10 @@ assert_contains _site/index.html 'aria-controls="site-nav"' "mobile toggle refer
 assert_contains _site/index.html 'styles.css' "page links the stylesheet"
 assert_contains _site/index.html 'script.js' "page links the script"
 
+# --- Task 3: scroll-spy wiring ---
+assert_contains script.js 'IntersectionObserver' "script.js sets up an IntersectionObserver for scroll-spy"
+assert_contains styles.css '.is-active' "styles.css defines an active nav-link state"
+
 if [ "$FAILURES" -eq 0 ]; then
   echo "All checks passed."
   exit 0
