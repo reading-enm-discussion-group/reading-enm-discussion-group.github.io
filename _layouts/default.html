@@ -4,9 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
 </head>
 <body>
   {% assign ordered_sections = site.sections | sort: "order" %}
+
+  <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+    <span class="visually-hidden">Toggle navigation menu</span>
+    <span aria-hidden="true">&#9776;</span>
+  </button>
+
+  <nav id="site-nav" aria-label="Section navigation">
+    <ul>
+      {% for section in ordered_sections %}
+      <li><a href="#{{ section.nav_id }}">{{ section.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+
   <main>
     {% for section in ordered_sections %}
     <section id="{{ section.nav_id }}">
@@ -15,5 +30,7 @@
     </section>
     {% endfor %}
   </main>
+
+  <script src="{{ '/script.js' | relative_url }}"></script>
 </body>
 </html>

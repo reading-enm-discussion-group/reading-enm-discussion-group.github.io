@@ -54,6 +54,15 @@ assert_order _site/index.html 'id="reading-list"' 'id="discussion-guidelines"' "
 assert_order _site/index.html 'id="discussion-guidelines"' 'id="contact"' "discussion-guidelines renders before contact"
 assert_unique_section_ids _site/index.html
 
+# --- Task 2: sidebar nav + mobile toggle markup ---
+assert_contains _site/index.html 'id="site-nav"' "nav has expected id"
+assert_contains _site/index.html 'aria-label="Section navigation"' "nav has accessible label"
+assert_contains _site/index.html 'href="#welcome"' "nav links to welcome section"
+assert_contains _site/index.html 'href="#contact"' "nav links to contact section"
+assert_contains _site/index.html 'aria-controls="site-nav"' "mobile toggle references nav via aria-controls"
+assert_contains _site/index.html 'styles.css' "page links the stylesheet"
+assert_contains _site/index.html 'script.js' "page links the script"
+
 if [ "$FAILURES" -eq 0 ]; then
   echo "All checks passed."
   exit 0
