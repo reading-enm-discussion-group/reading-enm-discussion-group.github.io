@@ -1,5 +1,5 @@
 ---
-title: "About US"
+title: "About Us"
 nav_id: about-us
 order: 1
 ---
