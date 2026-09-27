@@ -116,7 +116,7 @@ a {
 
 main {
   padding: 2rem 1.5rem;
-  max-width: 42rem;
+  max-width: 63rem;
 }
 
 @media (min-width: 768px) {
@@ -158,6 +158,10 @@ main {
     border: none;
     border-bottom: 1px solid var(--border);
     text-align: left;
+  }
+
+  #theme-toggle {
+    top: 0.5rem;
   }
 
   #site-nav {
